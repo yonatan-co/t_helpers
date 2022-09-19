@@ -272,3 +272,9 @@ def calculate_results(y_true, y_pred):
                   "recall": model_recall,
                   "f1": model_f1}
   return model_results
+
+
+def fine_tune_model(base_model, layers_num):
+  base_model.trainable = True
+  for layer in base_model.layers[:-layers_num]:
+    layer.trainable = False 
