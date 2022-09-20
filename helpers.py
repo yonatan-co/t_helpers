@@ -274,15 +274,15 @@ def calculate_results(y_true, y_pred):
   return model_results
 
 
-# def fine_tune_model(base_model, layers_num):
-#    """
-#   the function takes a model and prepere the given number of layers for fine 
-#   tuning.
-#   Args:
-#     base_model: the base_model we want to fine_tune.
-#     layers_num: the nuumber of layers we want to fine tune.
-#   Returns: Void 
-#   """
-#   base_model.trainable = True
-#   for layer in base_model.layers[:-layers_num]:
-#     layer.trainable = False 
+def fine_tune_model(base_model, layers_num):
+  """
+  the function takes a model and prepere the given number of layers for fine 
+  tuning.
+  Args:
+    base_model: the base_model we want to fine_tune.
+    layers_num: the nuumber of layers we want to fine tune.
+  Returns: Void 
+  """
+  base_model.trainable = True
+  for layer in base_model.layers[:-layers_num]:
+    layer.trainable = False 
