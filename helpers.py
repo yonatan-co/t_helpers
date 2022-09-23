@@ -299,3 +299,22 @@ def get_image(filename, scale, image_size=224):
   if scale:
     img = img / 255.
   return img
+
+
+def predict_image(img_path, model, classes, scale=False):
+  """
+  a void function that plots model predictions from given
+  img path and model.
+  Args:
+    img_path: the path of the image we want to predict on.
+    model: the model we eant to prtediuct with.
+    classes: the classes our model can predict from.
+    scale(optional): if we want to scale the image when loading it.
+  """
+  img = get_image(img_path, scale=False)
+  img_probs = model.predict(tf.expand_dims(img, axis=0))
+  img_class = test_data.class_names[img_probs.argmax()]
+
+  plt.figure()
+  plt.imshow(img/ 255.)
+  plt.title(f"prediction: {img_class}, {img_probs.max():.2f} sure")
