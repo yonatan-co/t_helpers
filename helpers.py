@@ -286,3 +286,16 @@ def fine_tune_model(base_model, layers_num):
   base_model.trainable = True
   for layer in base_model.layers[:-layers_num]:
     layer.trainable = False 
+
+    
+def get_image(filename, scale, image_size=224):
+  """
+  function to get image redy to model prediction
+  """
+
+  img = tf.io.read_file(filename)
+  img = tf.image.decode_image(img)
+  img = tf.image.resize(img, size=(image_size, image_size))
+  if scale:
+    img = img / 255.
+  return img
